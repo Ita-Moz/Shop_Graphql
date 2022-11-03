@@ -1,1 +1,1 @@
-# book-for-all
+# shopping-for-all
