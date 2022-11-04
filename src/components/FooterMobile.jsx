@@ -1,7 +1,7 @@
 import {footer} from '@/config/images'
 function FooterMobile() {
     return (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 border-t border-gray-200">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white">
             <div className="flex justify-evenly items-center">
                 <a href="#" className="text-center cursor-pointer">
                     <img

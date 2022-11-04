@@ -1,17 +1,33 @@
+import { useState, useEffect, useRef } from "react"
 import { BsSearch } from "react-icons/bs"
+import SuggestSearch from "./SuggestSearch"
 
-function Search({className}) {
+function Search({ className }) {
+    const [showSuggest, setShowSuggest] = useState(false)
+    const inputRef = useRef()
+    useEffect(() => {
+        document.addEventListener("click", (e) => {
+            if (!inputRef.current.contains(e.target)) {
+                setShowSuggest(false)
+            }
+        })
+    }, [])
     return (
         <div className={`relative ${className}`}>
-            <input
-                autoComplete="off"
-                className="w-full outline-none bg-[#f0f0f0] px-5 py-2 rounded-md"
-                type="text"
-                placeholder="Bạn cần tìm gì?"
-            />
-            <button className="absolute top-1/2 right-7 -translate-y-1/2 text-2xl cursor-pointer">
-                <BsSearch />
-            </button>
+            <div className={`relative w-full `}>
+                <input
+                    autoComplete="off"
+                    className="w-full outline-none bg-[#f0f0f0] px-5 py-2 rounded-md"
+                    type="text"
+                    placeholder="Bạn cần tìm gì?"
+                    ref={inputRef}
+                    onClick={() => setShowSuggest(true)}
+                />
+                <button className="absolute top-1/2 right-7 -translate-y-1/2 text-2xl cursor-pointer">
+                    <BsSearch />
+                </button>
+            </div>
+            {showSuggest && <SuggestSearch />}
         </div>
     )
 }
