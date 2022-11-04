@@ -1,6 +1,7 @@
 import { BiPhoneCall } from "react-icons/bi"
 import { RiShoppingCartFill } from "react-icons/ri"
 import { MdAccountCircle } from "react-icons/md"
+import logo from '/src/assets/images/logo.webp'
 import Search from "./Search"
 function Header() {
     return (
@@ -20,7 +21,7 @@ function Header() {
             <div className="flex items-center justify-between py-5 ">
                 <div className="w-[25%]">
                     <img
-                        src="./src/assets/images/logo.webp"
+                        src={logo}
                         alt="logo"
                         className="max-h-[45px] max-w-[190px]"
                     />
