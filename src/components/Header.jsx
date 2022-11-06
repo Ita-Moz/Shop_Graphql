@@ -36,12 +36,12 @@ function Header() {
                         </div>
                     </div>
                     <div className="hidden lg:flex justify-center items-center gap-2">
-                        <MdAccountCircle className="text-3xl" />
+                        <MdAccountCircle className="cursor-pointer text-3xl" />
                         <strong>Tài khoản</strong>
                     </div>
                     <div className="centered gap-2">
                         <div className="relative">
-                            <RiShoppingCartFill className=" text-2xl md:text-3xl" />
+                            <RiShoppingCartFill className="cursor-pointer text-2xl md:text-3xl" />
                             <span className="absolute bg-yellow-400 -top-1 -right-1 w-2 h-2 rounded-full"></span>
                         </div>
                         <strong className="hidden lg:inline-block">Giỏ hàng</strong>

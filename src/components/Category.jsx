@@ -11,9 +11,8 @@ function Category({ bg, title, arraySub }) {
             <div className="relative font-medium text-lg mb-5 ">{title}</div>
             <ul>
                 {arraySub.map((sub, index) => (
-                    <a href="#">
+                    <a href="#" key={index}>
                         <li
-                            key={index}
                             className={
                                 "relative ml-3 text-[#3e4a5e] text-[14px] py-1 before:absolute before:top-1/2 before:-left-3 before:-translate-y-1/2 before:w-[7px] before:h-[7px] before:bg-gray-900 before:rounded-full hover:text-primary"
                             }
