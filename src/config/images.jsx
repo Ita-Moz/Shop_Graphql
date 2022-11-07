@@ -12,6 +12,15 @@ import thitheo from "@images/products/thit-heo-xay.webp"
 import tieuphuquoc from "@images/products/tieu-den-phu-quoc.webp"
 import tieuden from "@images/products/tieu-den-xay.webp"
 import slider1 from "@images/slider_1.webp"
+import celano from "@images/brand/celano.webp"
+import gaudo from "@images/brand/gaudo.webp"
+import cornetto from "@images/brand/cornetto.webp"
+import haohao from "@images/brand/haohao.webp"
+import merino from "@images/brand/merino.webp"
+import nestle from "@images/brand/nestle.webp"
+import thtruemilk from "@images/brand/thtruemilk.webp"
+import vinamilk from "@images/brand/vinamilk.webp"
+import walls from "@images/brand/walls.webp"
 export const footer = {
     menu,
     cart,
@@ -33,4 +42,15 @@ export const products={
     thitheo,
     tieuphuquoc,
     tieuden
+}
+export const brand = {
+    vinamilk,
+    thtruemilk,
+    nestle,
+    walls,
+    cornetto,
+    merino,
+    celano,
+    haohao,
+    gaudo,
 }
