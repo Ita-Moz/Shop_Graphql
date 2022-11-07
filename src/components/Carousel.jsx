@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/pagination"
 import { Pagination } from "swiper"
-function Carousel({ images }) {
+function Carousel({ images,preview,space,breakpoints }) {
     return (
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+        <Swiper breakpoints={breakpoints} spaceBetween={space} slidesPerView={preview} pagination={true} modules={[Pagination]} className="mySwiper">
             {images.map((image, index) => {
                 return (
                     <SwiperSlide key={index}>

@@ -21,6 +21,8 @@ import nestle from "@images/brand/nestle.webp"
 import thtruemilk from "@images/brand/thtruemilk.webp"
 import vinamilk from "@images/brand/vinamilk.webp"
 import walls from "@images/brand/walls.webp"
+import banner1 from "@images/feature_banner_1.webp"
+import banner2 from "@images/feature_banner_2.webp"
 export const footer = {
     menu,
     cart,
@@ -53,4 +55,8 @@ export const brand = {
     celano,
     haohao,
     gaudo,
+}
+export const bannerMilk = {
+    banner1,
+    banner2
 }

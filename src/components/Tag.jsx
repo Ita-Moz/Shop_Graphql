@@ -1,9 +1,20 @@
-function Tag({ children, className }) {
+import { Link } from "react-router-dom"
+
+function Tag({ children, className, to, href, onClick, ...passProps }) {
+	let Comp = "button"
+	const props = { onClick, ...passProps }
+	if (to) {
+		Comp = Link
+		props.to = to
+	} else if (href) {
+		Comp = "a"
+		props.href = href
+	}
 	return (
 		<div>
-			<a className={` ${className} `} href="#">
+			<Comp className={` ${className} `} {...props}>
 				{children}
-			</a>
+			</Comp>
 		</div>
 	)
 }
