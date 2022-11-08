@@ -59,13 +59,18 @@ function Home() {
 						slidesPerView={2}
 						spaceBetween={10}
 						breakpoints={{
+							300: {
+								autoplay: true
+							},
 							768: {
 								slidesPerView: 3,
-								spaceBetween: 20
+								spaceBetween: 20,
+								autoplay: false
 							},
 							1024: {
 								slidesPerView: 5,
-								spaceBetween: 10
+								spaceBetween: 10,
+								autoplay: false
 							}
 						}}
 						className="mySwiper"
@@ -244,8 +249,10 @@ function Home() {
 					</div>
 				</div>
 				<div className="text-center mt-5 lg:mt-20">
-					<Tag className={`bg-[#CCE7D0] font-medium text-[13px] px-5 py-3 lg:py-5 rounded-md hover:bg-primary hover:text-white`} href={'#'}>
-
+					<Tag
+						className={`bg-[#CCE7D0] font-medium text-[13px] px-5 py-3 lg:py-5 rounded-md hover:bg-primary hover:text-white`}
+						href={"#"}
+					>
 						Xem tất cả tin Món ngon mỗi ngày
 					</Tag>
 				</div>
