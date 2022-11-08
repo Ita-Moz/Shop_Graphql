@@ -1,6 +1,7 @@
 import { BiPhoneCall } from "react-icons/bi"
 import { RiShoppingCartFill } from "react-icons/ri"
 import { MdAccountCircle } from "react-icons/md"
+import { Link } from "react-router-dom"
 import logo from "/src/assets/images/logo.webp"
 import Search from "./Search"
 function Header() {
@@ -20,7 +21,7 @@ function Header() {
 			</div>
 			<div className="flex items-center justify-between py-5 ">
 				<div className="w-[25%]">
-					<a href="#"><img src={logo} alt="logo" className="max-h-[45px] max-w-[190px]" /></a>
+					<Link to={'/'}><img src={logo} alt="logo" className="max-h-[45px] max-w-[190px]" /></Link>
 				</div>
 				<Search className={"hidden lg:flex w-[35%]"}></Search>
 				<div className="flex items-center gap-3 w-[40%] justify-end ">
@@ -45,8 +46,21 @@ function Header() {
 				</div>
 			</div>
 			<Search className={"flex lg:hidden"} />
+			<NavMenu />
 		</div>
 	)
 }
-
+function NavMenu(){
+	return(
+		<div className="flex  items-center py-3 border-b border-gray-300">
+			<div className="flex gap-5 font-medium">
+				<a href="#">Trang chủ</a>
+				<a href="#">Sản phẩm</a>
+				<a href="#">Tin tức</a>
+				<a href="#">Giới thiệu</a>
+				<a href="#">Liên hệ</a>
+			</div>
+		</div>
+	)
+}
 export default Header

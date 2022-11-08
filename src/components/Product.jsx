@@ -31,7 +31,7 @@ function Product({ img, category, title, price, sale, amount, isFlex = false }) 
 						<p className="text-[13px] text-red font-medium">{sale ? sale : ""}</p>
 					</div>
 					{!isFlex && (
-						<button className="hidden sm:flex rounded-full w-10 h-10 bg-[#cce7d0] centered group hover:bg-primary">
+						<button className="hidden sm:flex rounded-md w-10 h-10 bg-[#cce7d0] centered group hover:bg-primary">
 							<MdOutlineShoppingCart className="text-[#3bb77e] group-hover:text-white" />
 						</button>
 					)}

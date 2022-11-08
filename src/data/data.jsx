@@ -1,4 +1,5 @@
 import { footer, products } from "../config/images"
+export const dataTitleMenu=[]
 export const dataFooterPolicy = [
 	{
 		img: footer.footerPolicy1,
