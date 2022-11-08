@@ -6,7 +6,7 @@ import FooterMobile from "./components/FooterMobile"
 export default function App() {
 	return (
 		<BrowserRouter>
-			<div className="App ">
+			<div className="App">
 				<div className="px-5 md:px-10 xl:px-20 2xl:px-32">
 					<Header />
 					<Routes>

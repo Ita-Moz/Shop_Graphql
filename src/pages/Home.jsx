@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Autoplay } from "swiper"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -11,6 +12,7 @@ import Countdown from "../components/Countdown"
 import Product from "../components/Product"
 import Tag from "../components/Tag"
 import { bannerMilk, bgCategory, brand, products, slider } from "../config/images"
+import { dataFoodFish, dataProductFish } from "../data/data"
 function Home() {
 	const arrayCategory = [
 		"Rau xanh, Rau tươi",
@@ -24,6 +26,8 @@ function Home() {
 	const arrayBgCategory = Object.values(bgCategory)
 	const arrayBrand = Object.values(brand)
 
+	const [selected, setSelected] = useState(0)
+	const [productsSelected, setProductSelected] = useState(dataProductFish[0])
 	return (
 		<div className="w-full">
 			<div className="mt-5 overflow-hidden rounded-lg">
@@ -83,7 +87,7 @@ function Home() {
 											title={"Hộp 30 trứng cút tươi V.Farm"}
 											price={"26.000"}
 											sale={"Giảm 10%"}
-											amount={44}
+											amount={45}
 										/>
 									</div>
 								</SwiperSlide>
@@ -109,42 +113,24 @@ function Home() {
 				<div className="lg:flex lg:justify-between lg:items-center">
 					<h1 className="text-[22px] font-medium">Thịt, cá, Trứng rau</h1>
 					<ul className="mt-5 flex flex-shrink-0 gap-5 overflow-x-scroll pb-3 lg:overflow-x-hidden">
-						<li className=" min-w-fit">
-							<Tag
-								className={
-									"bg-gray-200 text-black px-3 py-2 rounded-md hover:bg-primary hover:text-white text-sm "
-								}
-							>
-								Thịt, cá, trứng, rau
-							</Tag>
-						</li>
-						<li className=" min-w-fit">
-							<Tag
-								className={
-									"bg-gray-200 text-black px-3 py-2 rounded-md hover:bg-primary hover:text-white text-sm"
-								}
-							>
-								Hàng đông mát
-							</Tag>
-						</li>
-						<li className=" min-w-fit">
-							<Tag
-								className={
-									"bg-gray-200 text-black px-3 py-2 rounded-md hover:bg-primary hover:text-white text-sm"
-								}
-							>
-								Mì, miến, cháo, phở
-							</Tag>
-						</li>
-						<li className=" min-w-fit">
-							<Tag
-								className={
-									"bg-gray-200 text-black px-3 py-2 rounded-md hover:bg-primary hover:text-white text-sm"
-								}
-							>
-								Gạo, bột, đồ khô
-							</Tag>
-						</li>
+						{dataFoodFish.map((item, index) => (
+							<li className=" min-w-fit" key={index}>
+								<Tag
+									key={index}
+									onClick={() => {
+										setSelected(index)
+										setProductSelected(dataProductFish[index])
+									}}
+									className={`  px-3 py-2 rounded-md text-sm transition-all ${
+										selected == index
+											? "bg-primary text-white"
+											: "bg-gray-200 text-black"
+									} `}
+								>
+									{item}
+								</Tag>
+							</li>
+						))}
 					</ul>
 				</div>
 				<div>
@@ -152,16 +138,16 @@ function Home() {
 						<div>
 							<img src={bannerMeat} alt="image" className="rounded-md" />
 						</div>
-						{arrayImgProduct.map((item, index) => {
+						{productsSelected.map((item, index) => {
 							return (
 								<Product
 									key={index}
-									img={item}
-									category={`category${index}`}
-									title={`Title${index}`}
-									price={"20.000"}
-									sale={"Giảm 20%"}
-									amount="33"
+									img={item.img}
+									category={item.category}
+									title={item.title}
+									price={item.price}
+									sale={item.sale}
+									amount={item.quantity}
 								/>
 							)
 						})}
@@ -216,7 +202,7 @@ function Home() {
 							<img src={products.daucahoi} alt="images" />
 						</div>
 						<div className="w-[60%] sm:w-full">
-							<a href="#" className="text-[15px] font-medium">
+							<a href="#" className="text-[15px] font-medium hover:text-primary transition-all">
 								Gần 100 loại bánh dân gian hội tụ ở miền tây
 							</a>
 							<p className="text-gray-500 text-[13px] italic">Thứ tư, 13/04/2022</p>
@@ -233,7 +219,7 @@ function Home() {
 							<img src={products.daucahoi} alt="images" />
 						</div>
 						<div className="w-[60%] sm:w-full">
-							<a href="#" className="text-[15px] font-medium">
+							<a href="#" className="text-[15px] font-medium hover:text-primary transition-all">
 								Gần 100 loại bánh dân gian hội tụ ở miền tây
 							</a>
 							<p className="text-gray-500 text-[13px] italic">Thứ tư, 13/04/2022</p>
@@ -248,7 +234,7 @@ function Home() {
 				</div>
 				<div className="text-center mt-5 lg:mt-20">
 					<Tag
-						className={`bg-[#CCE7D0] font-medium text-[13px] px-5 py-3 lg:py-5 rounded-md hover:bg-primary hover:text-white`}
+						className={`transition-all bg-[#CCE7D0] font-medium text-[13px] px-5 py-3 lg:py-5 rounded-md hover:bg-primary hover:text-white`}
 						href={"#"}
 					>
 						Xem tất cả tin Món ngon mỗi ngày
