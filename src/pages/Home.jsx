@@ -105,7 +105,7 @@ function Home() {
 			<section className="mt-10 bg-gray-50 py-3 px-2 rounded-md lg:px-10">
 				<div className="lg:flex lg:justify-between lg:items-center">
 					<h1 className="text-[22px] font-medium">Thịt, cá, Trứng rau</h1>
-					<ul className="mt-5 flex flex-shrink-0 gap-5 overflow-x-scroll pb-3">
+					<ul className="mt-5 flex flex-shrink-0 gap-5 overflow-x-scroll pb-3 lg:overflow-x-hidden">
 						<li className=" min-w-fit">
 							<Tag
 								className={

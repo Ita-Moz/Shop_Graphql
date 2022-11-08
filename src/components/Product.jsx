@@ -38,13 +38,13 @@ function Product({ img, category, title, price, sale, amount, isFlex = false }) 
 				</div>
 				{amount && (
 					<div className="bg-[#ffaaaf] z-10 relative w-full rounded-full">
-						<span className="relative top-0 left-[40%] z-20 text-white text-[11px] lg:text-[13px]">
+						<span className="relative inline-block top-0 left-1/2 transform -translate-x-1/2 z-20 text-white text-[11px] lg:text-[13px]">
 							Đã bán {amount}
 						</span>
 						<img
 							className="absolute -top-1 left-0 z-30"
 							src={fireIcon}
-							width={20}
+							width={22}
 							alt="fire icon"
 						/>
 						<div className="bg-red rounded-full absolute top-0 left-0 h-full w-1/2 text-center text-white"></div>

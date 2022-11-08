@@ -1,4 +1,4 @@
-import {footer} from '@/config/images'
+import {footerMobile} from '@/config/images'
 function FooterMobile() {
     return (
         <div className="lg:hidden z-50 fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white">
@@ -6,7 +6,7 @@ function FooterMobile() {
                 <a href="#" className="text-center cursor-pointer">
                     <img
                         className="w-7 py-2 mx-auto"
-                        src={footer.menu}
+                        src={footerMobile.menu}
                         alt="logo menu"
                     />
                     Menu
@@ -14,7 +14,7 @@ function FooterMobile() {
                 <a href="#" className="relative text-center cursor-pointer">
                     <img
                         className="w-7 py-2 mx-auto"
-                        src={footer.cart}
+                        src={footerMobile.cart}
                         alt="logo cart"
                     />
                     Giỏ hàng
@@ -25,7 +25,7 @@ function FooterMobile() {
                 <a href="#" className="relative text-center cursor-pointer">
                     <img
                         className="w-7 py-2 mx-auto"
-                        src={footer.love}
+                        src={footerMobile.love}
                         alt="logo love"
                     />
                     Yêu thích
@@ -36,7 +36,7 @@ function FooterMobile() {
                 <a href="#" className="text-center cursor-pointer">
                     <img
                         className="w-7 py-2 mx-auto"
-                        src={footer.account}
+                        src={footerMobile.account}
                         alt="logo account"
                     />
                     Tài khoản
