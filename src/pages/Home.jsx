@@ -1,3 +1,4 @@
+import { Autoplay } from "swiper"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 import bandImage from "../assets/images/brand/wolf_brand_image.webp"
@@ -58,22 +59,19 @@ function Home() {
 					<Swiper
 						slidesPerView={2}
 						spaceBetween={10}
+						autoplay={{ delay: 3000, disableOnInteraction: false }}
 						breakpoints={{
-							300: {
-								autoplay: true
-							},
 							768: {
 								slidesPerView: 3,
-								spaceBetween: 20,
-								autoplay: false
+								spaceBetween: 20
 							},
 							1024: {
 								slidesPerView: 5,
-								spaceBetween: 10,
-								autoplay: false
+								spaceBetween: 10
 							}
 						}}
 						className="mySwiper"
+						modules={[Autoplay]}
 					>
 						{arrayImgProduct.map((image, index) => {
 							return (
