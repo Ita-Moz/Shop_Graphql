@@ -18,9 +18,6 @@ const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	photo:{
-		type: String,
-	},
 	email: {
 		type: String,
 		required: true
@@ -29,8 +26,11 @@ const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
+	imageID: {
+		type: String
+	},
 	cartID: {
-		type: String,
+		type: String
 	}
 })
 

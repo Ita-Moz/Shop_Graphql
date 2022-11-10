@@ -7,7 +7,7 @@ import dotenv from "dotenv"
 import express from "express"
 import http from "http"
 import mongoose from "mongoose"
-import mongoDataMethods from "./data/db.js"
+import mongoDataMethods from "./controllers/index.js"
 import resolvers from "./graphql/resolvers.js"
 import typeDefs from "./graphql/schema.js"
 dotenv.config()

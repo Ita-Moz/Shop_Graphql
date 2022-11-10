@@ -14,10 +14,10 @@ const NewsSchema = new Schema({
 		type: String,
 		default: "No description",
 	},
-	photo:{
-		type: [String],
+	imageID:{
+		type: String,
 	},
-	category:{
+	categoryID:{
 		type: String,
 		required: true
 	}
