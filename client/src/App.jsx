@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import publicRoutes from "./routes/routes"
-import Header from "./components/Header"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Footer from "./components/Footer"
 import FooterMobile from "./components/FooterMobile"
+import Header from "./components/Header"
+import publicRoutes from "./routes/routes"
+
 export default function App() {
 	return (
 		<BrowserRouter>

@@ -1,32 +1,33 @@
 const typeDefs = `#graphql
 	scalar Date
-	type Products {
+	scalar Upload
+	type Product {
 		id: ID!
 		name: String
 		price: Int
 		quantity: Int
-		imageID: Images
+		image: Image
 		brand: String
 		description: String
 		kilogram: Int
-		categoryID: String
+		category: Category
 	}
-	type Images {
-		url: String
-    	cloudinaryId: String
+	type Image {
+		url:String!,
+		name:String,
     	createdAt: Date
 	    updatedAt: Date
 	}
-	type Categories {
+	type Category {
 		name: String
-		imageID: Images
+		image: Image
 		type: String
 	}
-	type Carts {
-		productID: Products
+	type Cart {
+		productID: Product
 		totalPrice: Int
 	}
-	type Users {
+	type User {
 		firstName: String
 		lastName: String
 		userName: String
@@ -34,25 +35,29 @@ const typeDefs = `#graphql
 		email: String
 		phone: Int
 		role: String
-		imageID: Images
-		cartID: Carts
+		image: Image
+		cartID: Cart
 	}
 	type News {
 		title: String
 		createAt: Date
 		description: String
-		imageID: Images
-		categoryID: Categories
+		image: Image
+		category: Category
 	}
 
     # Yêu cầu truy xuất dữ liệu
 	type Query {
-		products: [Products]
-		product(id: ID!): Products
+		products: [Product]
+		product(id: ID!): Product
+		images: [Image]
+		image(id: ID!): Image
 	}
 	# Yêu cầu thêm dữ liệu
 	type Mutation {
-		createProduct(name:String, price:Int, quantity:Int): Products
+		createProduct(name:String!, price:Int!, quantity:Int!, imageID:String!, brand:String,description: String, kilogram: Int, categoryID: String  ): Product
+		createImage(file: Upload!): Image!
 	}
+	
 `
 export default typeDefs

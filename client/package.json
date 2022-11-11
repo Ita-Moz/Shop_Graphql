@@ -10,6 +10,9 @@
     "serve": "npm run build && npm run preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "apollo-upload-client": "^17.0.0",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",

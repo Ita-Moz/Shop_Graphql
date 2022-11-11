@@ -1,9 +1,10 @@
 import { BiPhoneCall } from "react-icons/bi"
-import { RiShoppingCartFill } from "react-icons/ri"
 import { MdAccountCircle } from "react-icons/md"
+import { RiShoppingCartFill } from "react-icons/ri"
 import { Link } from "react-router-dom"
-import logo from "/src/assets/images/logo.webp"
 import Search from "./Search"
+import Upload from "./Upload"
+import logo from "/src/assets/images/logo.webp"
 function Header() {
 	return (
 		<div>
@@ -21,7 +22,9 @@ function Header() {
 			</div>
 			<div className="flex items-center justify-between py-5 ">
 				<div className="w-[25%]">
-					<Link to={'/'}><img src={logo} alt="logo" className="max-h-[45px] max-w-[190px]" /></Link>
+					<Link to={"/"}>
+						<img src={logo} alt="logo" className="max-h-[45px] max-w-[190px]" />
+					</Link>
 				</div>
 				<Search className={"hidden lg:flex w-[35%]"}></Search>
 				<div className="flex items-center gap-3 w-[40%] justify-end ">
@@ -39,7 +42,9 @@ function Header() {
 					<div className="centered gap-2">
 						<div className="relative">
 							<RiShoppingCartFill className="cursor-pointer text-2xl md:text-3xl" />
-                        <p className="absolute -top-4 left-5 w-5 h-5 centered bg-yellow rounded-full text-[13px]">2</p>
+							<p className="absolute -top-4 left-5 w-5 h-5 centered bg-yellow rounded-full text-[13px]">
+								2
+							</p>
 						</div>
 						<strong className="hidden lg:inline-block">Giỏ hàng</strong>
 					</div>
@@ -47,12 +52,13 @@ function Header() {
 			</div>
 			<Search className={"flex lg:hidden"} />
 			<NavMenu />
+			<Upload />
 		</div>
 	)
 }
-function NavMenu(){
-	return(
-		<div className="flex  items-center py-3 border-b border-gray-300">
+function NavMenu() {
+	return (
+		<div className="hidden lg:flex  items-center py-3 border-b border-gray-300">
 			<div className="flex gap-5 font-medium">
 				<a href="#">Trang chủ</a>
 				<a href="#">Sản phẩm</a>

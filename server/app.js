@@ -7,7 +7,7 @@ import dotenv from "dotenv"
 import express from "express"
 import http from "http"
 import mongoose from "mongoose"
-import mongoDataMethods from "./controllers/index.js"
+import mongoDataMethods from "./data/db.js"
 import resolvers from "./graphql/resolvers.js"
 import typeDefs from "./graphql/schema.js"
 dotenv.config()
@@ -40,9 +40,8 @@ const server = new ApolloServer({
 	plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 await server.start()
-
+app.use(cors())
 app.use(
-	cors(),
 	bodyParser.json(),
 	expressMiddleware(server, {
 		context: async () => ({ mongoDataMethods })
@@ -50,4 +49,4 @@ app.use(
 )
 
 await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve))
-console.log(`🚀 Server ready at http://localhost:${PORT}`)
+console.log(`🚀 Server ready at ${process.env.DOMAIN}${PORT}`)
