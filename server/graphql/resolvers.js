@@ -1,7 +1,7 @@
+
 import { GraphQLScalarType, Kind } from "graphql"
+import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"
 import mongoDataMethods from "../data/db.js"
-import path from "path"
-import fs from "fs"
 const resolvers = {
 	// Định nghĩa kiểu dữ liệu mới Date cho graphql (Để sử dụng định nghĩa "scalar Date" trong schema)
 	Date: new GraphQLScalarType({
@@ -20,6 +20,7 @@ const resolvers = {
 			return null
 		}
 	}),
+	Upload: GraphQLUpload,
 	// Định nghĩa các truy vấn
 	Query: {
 		products: async () => await mongoDataMethods.getAllProducts(),
@@ -27,12 +28,15 @@ const resolvers = {
 		images: async () => await mongoDataMethods.getAllImages(),
 		image: async (parent, args) => await mongoDataMethods.getImageById(args.id)
 	},
+
 	// Định nghĩa các thao tác thêm dữ liệu
 	Mutation: {
 		createProduct: async (parent, args) => {
 			return await mongoDataMethods.createProduct(args)
 		},
-		createImage: async (parent, args) => await mongoDataMethods.createImage(args),
+		createImage: async (parent, { file }) => {
+			return await mongoDataMethods.createImage(file)
+		}
 	},
 	Product: {
 		image: async (parent) => await mongoDataMethods.getImageById(parent.imageID)

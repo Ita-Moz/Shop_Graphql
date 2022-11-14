@@ -5,9 +5,9 @@ import bodyParser from "body-parser"
 import cors from "cors"
 import dotenv from "dotenv"
 import express from "express"
+import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs"
 import http from "http"
 import mongoose from "mongoose"
-import mongoDataMethods from "./data/db.js"
 import resolvers from "./graphql/resolvers.js"
 import typeDefs from "./graphql/schema.js"
 dotenv.config()
@@ -37,14 +37,24 @@ const httpServer = http.createServer(app)
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
+	csrfPrevention: true,
 	plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 await server.start()
-app.use(cors())
+app.use(express.static("public"))
+app.use(bodyParser.json())
+app.use(graphqlUploadExpress())
 app.use(
-	bodyParser.json(),
+	cors({
+		origin: [
+			"http://localhost:4000",
+			"http://127.0.0.1:5173",
+			"https://shopping-for-all.vercel.app"
+		],
+		credentials: true
+	}),
 	expressMiddleware(server, {
-		context: async () => ({ mongoDataMethods })
+		context: async ({ req, res }) => ({ req, res })
 	})
 )
 

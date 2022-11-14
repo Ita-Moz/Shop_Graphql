@@ -1,27 +1,18 @@
-import { gql, useMutation } from "@apollo/client"
+import { useMutation } from "@apollo/client"
+import { Mutation } from "../graphql"
 
-const UPLOAD_FILE = gql`
-	mutation CreateImage($file: Upload!) {
-		createImage(file: $file) {
-			url
-			name
-			createdAt
-			updatedAt
-		}
-	}
-`
 function Upload() {
-	const [mutate, { loading, error }] = useMutation(UPLOAD_FILE)
-	const handleFileChange = ({
-		target: {
-			validity,
-			files: [file]
+	const [uploadFile, { loading, error }] = useMutation(Mutation.UPLOAD_FILE, {
+		onCompleted: (data) => {
+			console.log(data)
 		}
-	}) => validity.valid && mutate({ variables: { file } })
-
+	})
+	const handleFileChange = (e) => {
+		const file = e.target.files[0]
+		uploadFile({ variables: { file } })
+	}
 	if (loading) return <div>Loading...</div>
 	if (error) return <div>{JSON.stringify(error, null, 2)}</div>
-
 	return (
 		<div>
 			<h1>Upload File</h1>

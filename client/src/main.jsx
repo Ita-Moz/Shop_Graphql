@@ -6,16 +6,18 @@ import App from "./App"
 import "./index.css"
 
 const client = new ApolloClient({
-	cache: new InMemoryCache(),
 	link: createUploadLink({
-		headers: {'Apollo-Require-Preflight': 'true'},
-		uri: "http://localhost:4000"
-	})
+		headers: {
+			'Apollo-Require-Preflight': true,
+			"content-type": "application/json"
+		},
+		uri: "http://localhost:4000",
+		credentials: "include"
+	}),
+	cache: new InMemoryCache()
 })
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-        <ApolloProvider client={client}>
+	<ApolloProvider client={client}>
 		<App />
-        </ApolloProvider>
-	</React.StrictMode>
+	</ApolloProvider>
 )
