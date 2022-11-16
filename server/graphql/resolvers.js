@@ -1,4 +1,3 @@
-
 import { GraphQLScalarType, Kind } from "graphql"
 import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"
 import mongoDataMethods from "../data/db.js"
@@ -34,8 +33,8 @@ const resolvers = {
 		createProduct: async (parent, args) => {
 			return await mongoDataMethods.createProduct(args)
 		},
-		createImage: async (parent, { file }) => {
-			return await mongoDataMethods.createImage(file)
+		createImage: async (parent, args) => {
+			return await mongoDataMethods.createImage(args.file)
 		}
 	},
 	Product: {

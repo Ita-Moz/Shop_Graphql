@@ -1,7 +1,6 @@
 import { ApolloServer } from "@apollo/server"
 import { expressMiddleware } from "@apollo/server/express4"
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer"
-import bodyParser from "body-parser"
 import cors from "cors"
 import dotenv from "dotenv"
 import express from "express"
@@ -31,7 +30,7 @@ const connectDB = async () => {
 connectDB()
 
 const app = express()
-const httpServer = http.createServer(app)
+const httpServer = await http.createServer(app)
 
 // Set up Apollo Server
 const server = new ApolloServer({
@@ -41,22 +40,16 @@ const server = new ApolloServer({
 	plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 await server.start()
-app.use(express.static("public"))
-app.use(bodyParser.json())
-app.use(graphqlUploadExpress())
 app.use(
-	cors({
-		origin: [
-			"http://localhost:4000",
-			"http://127.0.0.1:5173",
-			"https://shopping-for-all.vercel.app"
-		],
-		credentials: true
-	}),
+	express.static("public"),
+	express.json(),
+	express.urlencoded({ extended: false }),
+	graphqlUploadExpress(),
+	cors("*"),
 	expressMiddleware(server, {
 		context: async ({ req, res }) => ({ req, res })
 	})
 )
 
 await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve))
-console.log(`🚀 Server ready at ${process.env.DOMAIN}${PORT}`)
+console.log(`🚀 Server ready at ${process.env.BASE_URL}`)

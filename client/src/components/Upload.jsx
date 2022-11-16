@@ -16,7 +16,7 @@ function Upload() {
 	return (
 		<div>
 			<h1>Upload File</h1>
-			<input type="file" onChange={handleFileChange} />
+				<input type="file" onChange={handleFileChange} />
 		</div>
 	)
 }
