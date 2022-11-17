@@ -1,14 +1,14 @@
 import { gql } from "@apollo/client"
-const UPLOAD_FILE = gql`
-	mutation ($file: Upload!) {
-		createImage(file: $file) {
-			url
+const CREATE_PRODUCT = gql`
+	mutation CreateProduct($name: String!, $price: Int!, $quantity: Int!, $image: String!) {
+		createProduct(name: $name, price: $price, quantity: $quantity, image: $image) {
 			name
-			createdAt
-			updatedAt
+			price
+			quantity
+			image
 		}
 	}
 `
 export default {
-	UPLOAD_FILE
+	CREATE_PRODUCT
 }

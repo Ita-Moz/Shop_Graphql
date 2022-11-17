@@ -7,6 +7,7 @@ import express from "express"
 import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs"
 import http from "http"
 import mongoose from "mongoose"
+import mongoDataMethods from "./data/db.js"
 import resolvers from "./graphql/resolvers.js"
 import typeDefs from "./graphql/schema.js"
 dotenv.config()
@@ -43,11 +44,11 @@ await server.start()
 app.use(
 	express.static("public"),
 	express.json(),
-	express.urlencoded({ extended: false }),
+	express.urlencoded({ extended: true }),
 	graphqlUploadExpress(),
 	cors("*"),
 	expressMiddleware(server, {
-		context: async ({ req, res }) => ({ req, res })
+		context: async ({ req, res }) => ({ req, res, mongoDataMethods })
 	})
 )
 

@@ -1,7 +1,4 @@
-import fs from "fs"
-import { readFile } from "../middleware/file.js"
-import { Image, Product } from "../models/index.js"
-import cloudinary from "../utils/cloudinary.js"
+import { Product } from "../models/index.js"
 const mongoDataMethods = {
 	// Product
 	getAllProducts: async (condition = null) =>
@@ -14,29 +11,6 @@ const mongoDataMethods = {
 		} catch (error) {
 			console.log(error)
 		}
-	},
-	// Image
-	getAllImages: async (condition = null) =>
-		condition === null ? await Image.find() : await Image.find(condition),
-	getImageById: async (id) => await Image.findById(id),
-	createImage: async (file) => {
-		const imageUrl = await readFile(file)
-		console.log(imageUrl.pathName, imageUrl.randomName)
-		const result = await cloudinary.uploader.upload(
-			imageUrl.pathName,
-			{
-				tags: "basic_sample",
-				folder: "shopping-for-all"
-			},
-			(result, error) => console.log(result, error)
-		)
-		console.log(result.secure_url)
-		fs.unlink(imageUrl.pathName, (err) => {
-			if (err) throw err
-			console.log("File deleted!")
-		})
-		const newImage = new Image({ url: result.secure_url, name: imageUrl.randomName })
-		return await newImage.save()
 	}
 }
 export default mongoDataMethods

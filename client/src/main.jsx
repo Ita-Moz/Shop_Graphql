@@ -9,7 +9,7 @@ const client = new ApolloClient({
 	link: createUploadLink({
 		headers: {
 			'Apollo-Require-Preflight': true,
-			'Content-Type': ['multipart/form-data', 'application/json'],
+			'Content-Type': 'application/json',
 		},
 		uri: "http://localhost:4000",
 	}),
