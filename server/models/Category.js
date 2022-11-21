@@ -6,10 +6,10 @@ const CategorySchema = new Schema({
         type: String,
         required: true
     },
-    imageID:{
+    type:{
         type: String,
     },
-    type:{
+    typeItem:{
         type: String,
     }
 })

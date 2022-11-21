@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { MdOutlineShoppingCart } from "react-icons/md"
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined"
 import fireIcon from "../assets/images/fire_icon.svg"
 function Product({ img, category, title, price, sale, amount, isFlex = false }) {
 	return (
@@ -32,7 +31,7 @@ function Product({ img, category, title, price, sale, amount, isFlex = false }) 
 					</div>
 					{!isFlex && (
 						<button className="hidden sm:flex rounded-md w-10 h-10 bg-[#cce7d0] centered group hover:bg-primary">
-							<MdOutlineShoppingCart className="text-[#3bb77e] group-hover:text-white" />
+							<LocalMallOutlinedIcon className="text-[#3bb77e] group-hover:text-white" />
 						</button>
 					)}
 				</div>

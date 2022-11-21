@@ -23,11 +23,14 @@ const ProductSchema = new Schema({
 	kilogram: {
 		type: Number
 	},
-	image: {
+	imageID: {
 		type: String
 	},
 	categoryID: {
 		type: String
+	},
+	sale: {
+		type: Number
 	},
 	createdAt: {
 		type: Date,

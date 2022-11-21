@@ -1,11 +1,33 @@
-import { BiPhoneCall } from "react-icons/bi"
-import { MdAccountCircle } from "react-icons/md"
-import { RiShoppingCartFill } from "react-icons/ri"
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined"
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined"
+import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined"
+import { Tooltip, tooltipClasses } from "@mui/material"
+import Badge from "@mui/material/Badge"
+import { styled } from "@mui/material/styles"
+import { useState } from "react"
 import { Link } from "react-router-dom"
+import Cart from "./Cart"
 import Search from "./Search"
-import Upload from "./Upload"
 import logo from "/src/assets/images/logo.webp"
+
+const MyTooltip = styled(({ className, ...props }) => (
+	<Tooltip {...props} classes={{ popper: className }} />
+))(() => ({
+	[`& .${tooltipClasses.tooltip}`]: {
+		backgroundColor: "white",
+		color: "rgba(0, 0, 0, 0.87)",
+		minWidth: 320,
+		boxShadow: "0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 8px rgba(0, 0, 0, 0.1)",
+		padding: "8px 16px"
+	}
+}))
+
 function Header() {
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	const handleOpenCart = () => {
+		setIsDrawerOpen(true)
+	}
+
 	return (
 		<div>
 			<div className="hidden md:flex justify-between items-center font-light py-3 border-b border-gray-300">
@@ -29,40 +51,44 @@ function Header() {
 				<Search className={"hidden lg:flex w-[35%]"}></Search>
 				<div className="flex items-center gap-3 w-[40%] justify-end ">
 					<div className="flex items-center gap-1">
-						<BiPhoneCall className="text-2xl md:text-4xl" />
+						<PhoneInTalkOutlinedIcon className="text-2xl md:text-4xl" />
 						<div className="text-[13px] md:text-[15px]">
 							<p>Hotline</p>
 							<strong>1900 0000</strong>
 						</div>
 					</div>
 					<div className="hidden lg:flex justify-center items-center gap-2">
-						<MdAccountCircle className="cursor-pointer text-3xl" />
+						<AccountCircleOutlinedIcon className="cursor-pointer text-3xl" />
 						<strong>Tài khoản</strong>
 					</div>
-					<div className="centered gap-2">
-						<div className="relative">
-							<RiShoppingCartFill className="cursor-pointer text-2xl md:text-3xl" />
-							<p className="absolute -top-4 left-5 w-5 h-5 centered bg-yellow rounded-full text-[13px]">
-								2
-							</p>
-						</div>
+					<div className="centered gap-2" onClick={handleOpenCart}>
+						<Badge badgeContent={5} color="warning">
+							<LocalMallOutlinedIcon className="cursor-pointer text-2xl md:text-3xl" />
+						</Badge>
 						<strong className="hidden lg:inline-block">Giỏ hàng</strong>
 					</div>
 				</div>
 			</div>
 			<Search className={"flex lg:hidden"} />
 			<NavMenu />
-			<Upload />
+			<Cart isOpen={isDrawerOpen} handleClose={setIsDrawerOpen} />
 		</div>
 	)
 }
+
 function NavMenu() {
+	const categoryProduct = <div>san pham</div>
+	const categoryNews = <div>tin tuc</div>
 	return (
 		<div className="hidden lg:flex  items-center py-3 border-b border-gray-300">
 			<div className="flex gap-5 font-medium">
 				<a href="#">Trang chủ</a>
-				<a href="#">Sản phẩm</a>
-				<a href="#">Tin tức</a>
+				<MyTooltip title={categoryProduct}>
+					<a href="#">Sản phẩm</a>
+				</MyTooltip>
+				<MyTooltip title={categoryNews}>
+					<a href="#">Tin tức</a>
+				</MyTooltip>
 				<a href="#">Giới thiệu</a>
 				<a href="#">Liên hệ</a>
 			</div>

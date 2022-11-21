@@ -1,11 +1,11 @@
-import { AiOutlineFire } from "react-icons/ai"
+import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined"
 import Tag from "./Tag"
 function SuggestSearch() {
 	return (
 		<div className="z-50 absolute px-3 top-10 left-0 w-full bg-white shadow-md min-h-[100px]">
 			<div className="pt-2 border-b border-gray-300">
 				<h1 className="uppercase font-medium flex items-center">
-					<AiOutlineFire color="red" />
+					<WhatshotOutlinedIcon color="red" />
 					tìm kiếm phổ biến
 				</h1>
 			</div>

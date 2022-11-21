@@ -7,14 +7,38 @@ function Upload() {
 	const [product, setProduct] = useState({
 		name: "",
 		price: 0,
-		quantity: 0
+		quantity: 0,
+		description: "",
+		kilogram: 0,
+		brand: "",
+		categoryId: "",
+		sale: 0
 	})
-	const [createProduct, { loading, error }] = useMutation(Mutation.CREATE_PRODUCT, {
+	// Yêu cầu tạo dữ liệu từ graphql
+	const [createImage] = useMutation(Mutation.CREATE_IMAGE, {
 		onCompleted: (data) => {
 			console.log(data)
+			createProduct({
+				variables: {
+					name: product.name,
+					price: parseInt(product.price),
+					quantity: parseInt(product.quantity),
+					imageId: data.createImage.id,
+					description: product.description,
+					kilogram: parseInt(product.kilogram),
+					brand: product.brand
+					// Thêm categoryID và sale
+				}
+			})
+		}
+	})
+	const [createProduct] = useMutation(Mutation.CREATE_PRODUCT, {
+		onCompleted: (data) => {
+			console.log("Create Product Success", data)
 		}
 	})
 
+	// Hàm xử lý khi người dùng nhập formData
 	const handleFileChange = (e) => {
 		setImageSelected(e.target.files[0])
 	}
@@ -30,20 +54,15 @@ function Upload() {
 		await axios
 			.post(`https://api.cloudinary.com/v1_1/dv1fvhcla/image/upload`, formData)
 			.then((res) => {
-				const { url } = res.data
-				createProduct({
+				createImage({
 					variables: {
-						name: product.name,
-						price: parseInt(product.price),
-						quantity: parseInt(product.quantity),
-						image: url
+						url: res.data.url,
+						publicId: res.data.public_id
 					}
 				})
 			})
 			.catch((err) => console.log(err))
 	}
-	if (loading) return <div>Loading...</div>
-	if (error) return <div>error</div>
 	return (
 		<div>
 			<h1>Upload File</h1>
@@ -68,7 +87,10 @@ function Upload() {
 				onChange={handleOnchange}
 				required
 			/>
-			<input name="image" type="file" onChange={handleFileChange} required/>
+			<input name="description" type="text" onChange={handleOnchange} placeholder="desc" />
+			<input name="kilogram" type="number" onChange={handleOnchange} placeholder="KILO" />
+			<input name="brand" type="text" onChange={handleOnchange} placeholder="brand" />
+			<input name="image" type="file" onChange={handleFileChange} required />
 			<button onClick={handleSubmit}>Submit</button>
 		</div>
 	)
